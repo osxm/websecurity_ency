@@ -27,10 +27,10 @@ public class SQLInjectRest {
     private EntityManager em;
     
     @GetMapping("/users")
-    public String getUsr(String id,@RequestParam String accountId) {
+    public String getUsr(@RequestParam String id) {
         StringBuffer sb = new StringBuffer();
         @SuppressWarnings("rawtypes")
-        List list =em.createNativeQuery("select ACCOUNT_ID,DISPLAY_NAME from ACCOUNT where ACCOUNT_ID = "+accountId).getResultList();
+        List list =em.createNativeQuery("select ACCOUNT_ID,DISPLAY_NAME from USR where ID = "+id).getResultList();
         if(list!=null) {
             if(list!=null&&list.size()>0) {
                 for(int i=0;i<list.size();i++) {

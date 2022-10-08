@@ -30,7 +30,7 @@ public class SQLInjectRest {
     public String getUsr(@RequestParam String id) {
         StringBuffer sb = new StringBuffer();
         @SuppressWarnings("rawtypes")
-        List list =em.createNativeQuery("select ACCOUNT_ID,DISPLAY_NAME from USR where ID = "+id).getResultList();
+        List list =em.createNativeQuery("select name,email from usr where id = "+id).getResultList();
         if(list!=null) {
             if(list!=null&&list.size()>0) {
                 for(int i=0;i<list.size();i++) {
@@ -40,6 +40,7 @@ public class SQLInjectRest {
                         sb.append(obj.toString());
                         sb.append(";");
                     }
+                    sb.append("<br>");
                 }
             }
         }

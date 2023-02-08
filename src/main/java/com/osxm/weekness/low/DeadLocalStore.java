@@ -14,8 +14,8 @@ import com.osxm.websecurity.model.User;
 public class DeadLocalStore {
 	
 	public void dls(User user) {
-		String s ="123";
-		String username = user.getName();
+		String s ="123";  // 变量定义未使用(Eclipse 提示)
+		String username = user.getName(); //变量定义未使用(Eclipse 提示) + 本地变量存储了闲置不用的对象（静态扫描）
 	}
 
 }

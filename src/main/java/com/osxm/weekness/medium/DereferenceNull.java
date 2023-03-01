@@ -9,7 +9,18 @@
 */
 package com.osxm.weekness.medium;
 
+import javax.persistence.EntityManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.osxm.websecurity.model.User;
+
+@Service
 public class DereferenceNull {
+
+	@Autowired
+	private EntityManager em;
 
 	public String derefNul(String userName) {
 		String rtnStr = "";
@@ -33,5 +44,20 @@ public class DereferenceNull {
 			rtnStr += userName;
 		}
 		return rtnStr;
+	}
+
+	/**
+	 * 显式空指针间接引用
+	 */
+	public void explicitNullDereferenced() {
+		String userName = null;
+		User usr = em.find(User.class, "001");
+		if (usr != null) {
+			userName = usr.getName();
+		}
+		if (userName.equals("User1")) { // Explicit null dereferenced
+			System.out.println("Hello.");
+		}
+
 	}
 }

@@ -22,6 +22,30 @@ public class DereferenceNull {
 	@Autowired
 	private EntityManager em;
 
+	public void derefAfterNullCheck() {
+		User usr = em.find(User.class, "001");
+		// usr可能为空， 这里使用的时候判空了
+		if (usr != null) {
+			System.out.println("User is not null.");
+		} else {
+			System.out.println("User is  null.");
+		}
+		// 这里使用又没有判空
+		usr.setName("User1"); // 提示： Dereference after null check
+	}
+	public void derefAfterNullCheckSafe() {
+		User usr = em.find(User.class, "001");
+		// usr可能为空， 这里使用的时候判空了
+		if (usr != null) {
+			System.out.println("User is not null.");
+			usr.setName("User1"); 
+		} else {
+			System.out.println("User is  null.");
+		}
+	}
+	
+	
+
 	public String derefNul(String userName) {
 		String rtnStr = "";
 		String userName2 = userName.substring(1);

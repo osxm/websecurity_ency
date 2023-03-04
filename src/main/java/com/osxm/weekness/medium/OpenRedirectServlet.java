@@ -53,4 +53,23 @@ public class OpenRedirectServlet extends HttpServlet {
 			response.sendRedirect(url);
 		}
 	}
+	
+	
+	/*protected void doGetSafe2(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String redirectUrl = request.getParameter("redirectUrl");
+		if (redirectUrl != null && !redirectUrl.isEmpty()) {
+		    // 过滤重定向 URL，只保留需要的参数
+		    String filteredUrl = filterUrl(redirectUrl);
+
+		    // 验证重定向 URL，确保它是合法的
+		    if (isValidUrl(filteredUrl)) {
+		        // 使用相对路径进行重定向
+		        response.sendRedirect(filteredUrl);
+		    } else {
+		        // 如果 URL 不合法，则返回错误页面
+		        response.sendRedirect("/error");
+		    }
+		}
+	}*/
 }

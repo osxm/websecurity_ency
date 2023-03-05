@@ -9,6 +9,7 @@
 */
 package com.osxm.websecurity.pathtrave;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -26,6 +27,6 @@ public class MeasuresTests {
 	
 	@Test
 	public void getCanonicalPath() {
-		File file = new File();
+		File file = new File("");
 	}
 }

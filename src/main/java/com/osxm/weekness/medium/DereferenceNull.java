@@ -33,18 +33,17 @@ public class DereferenceNull {
 		// 这里使用又没有判空
 		usr.setName("User1"); // 提示： Dereference after null check
 	}
+
 	public void derefAfterNullCheckSafe() {
 		User usr = em.find(User.class, "001");
 		// usr可能为空， 这里使用的时候判空了
 		if (usr != null) {
 			System.out.println("User is not null.");
-			usr.setName("User1"); 
+			usr.setName("User1");
 		} else {
 			System.out.println("User is  null.");
 		}
 	}
-	
-	
 
 	public String derefNul(String userName) {
 		String rtnStr = "";
@@ -82,6 +81,48 @@ public class DereferenceNull {
 		if (userName.equals("User1")) { // Explicit null dereferenced
 			System.out.println("Hello.");
 		}
+	}
+	public void  explicitNullDereferenced2() {
+		String str = null;
+		if(str.length() == 0) {
+		    System.out.println("Empty string");
+		}
+	}
+	public void  explicitNullDereferencedSafe() {
+		String str = null;
+		if(str!=null&&str.length() == 0) {
+		    System.out.println("Empty string");
+		}
+	}
+	
+	public void explicitNullDereferenced3() {
+		String userName = null;
+		User usr = em.find(User.class, "001");
+		if (usr != null) {
+			userName = usr.getName();
+		}
+		if (userName.equals("User1")) { // Explicit null dereferenced
+			System.out.println("Hello.");
+		}
 
+	}
+	
+	public void explicitNullDereferenced3Safe() {
+		String userName = null;
+		User usr = em.find(User.class, "001");
+		if (usr != null) {
+			userName = usr.getName();
+		}
+		if (userName!=null && userName.equals("User1")) { // Explicit null dereferenced
+			System.out.println("Hello.");
+		}
+
+	}
+	
+	public String dereferenceNullReturnValue() {
+		return getObj().toString();
+	}
+	private Object getObj() {
+		return null;
 	}
 }

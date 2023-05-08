@@ -21,6 +21,26 @@ public class DereferenceNull {
 
 	@Autowired
 	private EntityManager em;
+	
+	//////////////////////1.对可能为空的函数返回值进行了调用 ///////////////////////////////
+	public String dereferenceNullReturnValue() {
+		return getObj().toString();
+	}
+	private Object getObj() {
+		return null;
+	}
+	
+   //////////////////////2.先使用， 后进行非空判断 ///////////////////////////////
+	
+	public String derefBeforeNullCheck(String userName) {
+		String rtnStr = "";
+		String userName2 = userName.substring(1);
+		if(userName != null) { //  提升有弱点
+			rtnStr += userName2;
+		}
+		return rtnStr;
+	}
+     ////////////////////// 3.对于一个非空的变量，前面使用检查了非空， 后面使用又没检查 ///////////////////////////////
 
 	public void derefAfterNullCheck() {
 		User usr = em.find(User.class, "001");
@@ -69,6 +89,7 @@ public class DereferenceNull {
 		return rtnStr;
 	}
 
+     //////////////////////3. 对明显为空的变量，没有判空就直接使用///////////////////////////////
 	/**
 	 * 显式空指针间接引用
 	 */
@@ -119,10 +140,5 @@ public class DereferenceNull {
 
 	}
 	
-	public String dereferenceNullReturnValue() {
-		return getObj().toString();
-	}
-	private Object getObj() {
-		return null;
-	}
+
 }

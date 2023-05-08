@@ -10,9 +10,9 @@
 package com.osxm.websecurity.model;
 
 public class User {
-	
+
 	private String id;
-	
+
 	private String name;
 
 	public String getId() {
@@ -30,7 +30,5 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 
 }

@@ -18,6 +18,8 @@ public class UnsyncLazyInit {
 	
 	private static  List<String> list;
 	
+	private static  List<String> list2;
+	
 	public static UnsyncLazyInit getInstance() {
 		if(instance == null) {
 			instance = new UnsyncLazyInit();
@@ -30,4 +32,26 @@ public class UnsyncLazyInit {
 		list.add("123");
 		return list;
 	}
+	
+	public static synchronized List<String> getListSafe(){
+	    if(list2 == null){
+	        list2 = new ArrayList<String>();
+	        list2.add("123");
+	    }
+	    return list2;
+	}
+	
+	
+	public static List<String> initList() {
+		List<String> list = new ArrayList<String>();
+		list.add("123");
+		return list;
+	}
+
+	public static class ListHolder {
+		public static final List<String> list = UnsyncLazyInit.initList();
+	}
+    public List<String> getListSafe2() {
+        return ListHolder.list;
+    }
 }
